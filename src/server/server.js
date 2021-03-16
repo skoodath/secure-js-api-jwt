@@ -1,19 +1,39 @@
+
 const express = require("express");
-const cors = require("cors");
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.listen(port, ()=> console.log(`Listening on port ${port}`));
+app.use(express.json());
+
+app.get("/users", (req, res) => {});
+
+app.get("/books", (req, res) => {});
+
+app.post("/login", (req, res) => {
+  let base64Encoding = req.headers.authorization.split(" ")[1];
+    console.log(base64Encoding);
+  let credentials = Buffer.from(base64Encoding.split, 'base64').toString().split(":");
+    console.log(credentials);
+  const username = credentials[0];
+  const password = credentials[1];
+});
+
+app.get("/logout", (req, res) => {});
+
+app.get("/favorite", (req, res) => {});
+
+app.post("/book", (req, res) => {});  
+
+/* const cors = require("cors");
 const {
   getUserByUsername,
   isEmptyObject,
   isPasswordCorrect,
 } = require("./shared");
-const app = express();
-const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Listening on port ${port}`));
-app.use(express.json());
+
 app.use(cors());
 
-app.get("/users", (req, res) => {});
-
-app.get("/books", (req, res) => {});
 
 app.post("/login", (req, res) => {
   let base64Encoding = req.headers.authorization.split(" ")[1];
@@ -38,4 +58,4 @@ app.get("/logout", (req, res) => {});
 
 app.get("/favorite", (req, res) => {});
 
-app.post("/book", (req, res) => {});
+app.post("/book", (req, res) => {}); */
